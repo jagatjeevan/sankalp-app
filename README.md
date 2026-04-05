@@ -1,8 +1,44 @@
-# Welcome to your Expo app 👋
+# Sankalp App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Sankalp App is a mobile application designed to help families stay connected, safe, and productive.
 
-## Get started
+## Project Overview
+
+This app provides background location tracking, family member management, multi-tier task organization, and voice-assisted task creation. It is built with React Native and Firebase to support offline task persistence, configurable location updates, and real-time notifications.
+
+## Core Features
+
+1. Mobile application for family safety and task management
+2. Background location tracking and family management
+   - Family Tree: manage and view family members in one place
+   - Alarm: notify family members when alerts are triggered
+   - Location storage: record device location every 2 minutes locally, then upload to the server after 6 minutes
+   - Configurable background tracking and upload intervals
+   - Support for detecting shutdown or power-off events to preserve and deliver stored location data
+3. Multi-tier task management
+   - Free-flow task list for flexible task creation
+   - Time-based task list for scheduled activities
+   - Daily and regular reminders to complete tasks
+4. Voice-based search and task creation
+5. Task categorization by list and type
+6. Admin access for managing users and settings
+
+## Important Considerations
+
+- Battery Optimization: use significant location change listeners instead of constant polling to minimize battery drain.
+- Permissions: request `ACCESS_BACKGROUND_LOCATION` on Android 11+ and `Always Allow` on iOS, otherwise the OS may kill the background process.
+- Task Persistence: store daily tasks in a local database so they remain available offline and sync with the server only when a connection is available.
+
+## Tech Stack
+
+- Frontend: React Native
+  - Geolocation
+  - Notifications
+- Backend: Firebase
+  - Authentication
+  - Location updates and messaging via Firebase Cloud Messaging
+
+## Getting Started
 
 1. Install dependencies
 
@@ -16,35 +52,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## Notes
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- This app uses Expo and file-based routing under the `app/` directory.
+- Use the existing `scripts/reset-project.js` command only if you want to reset the starter app structure.
