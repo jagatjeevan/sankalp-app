@@ -1,4 +1,4 @@
-import { TodoItem } from "typesmodels/todo";
+import { TodoItem } from "@models/todo";
 import {
   addDoc,
   collection,
@@ -34,6 +34,7 @@ export class TodoService {
   }
 
   static async addTodo(todo: Omit<TodoItem, "id">): Promise<string> {
+    console.log("Adding todo:", todo);
     try {
       const docRef = await addDoc(collection(db, COLLECTION_NAME), {
         ...todo,

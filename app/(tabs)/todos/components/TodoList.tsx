@@ -1,7 +1,7 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { TODO_SCREEN_TEXT } from "@config/todoConfig";
-import { TodoItem } from "@types/todo";
+import { TodoItem } from "@models/todo";
 import { Pressable, ScrollView } from "react-native";
 import { styles } from "../styles";
 

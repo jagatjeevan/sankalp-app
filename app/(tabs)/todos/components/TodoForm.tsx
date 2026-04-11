@@ -1,8 +1,12 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { TODO_SCREEN_TEXT } from "@config/todoConfig";
-import { TodoCategory } from "@types/todo";
-import { Pressable, ScrollView, TextInput } from "react-native";
+import { TodoCategory } from "@models/todo";
+import DateTimePicker, {
+  type DateTimePickerEvent,
+} from "@react-native-community/datetimepicker";
+import { useState } from "react";
+import { Platform, Pressable, ScrollView, TextInput } from "react-native";
 import { styles } from "../styles";
 
 type TodoFormProps = {
@@ -34,6 +38,43 @@ export function TodoForm({
   onCategorySelect,
   onSubmit,
 }: TodoFormProps) {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [pickerMode, setPickerMode] = useState<"date" | "time" | "datetime">(
+    Platform.OS === "ios" ? "datetime" : "date",
+  );
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (event: DateTimePickerEvent, date?: Date) => {
+    const { type } = event;
+
+    if (type === "dismissed") {
+      setShowDatePicker(false);
+      if (Platform.OS === "android") {
+        setPickerMode("date");
+      }
+      return;
+    }
+
+    if (!date) {
+      return;
+    }
+
+    if (Platform.OS === "android" && pickerMode === "date") {
+      setSelectedDate(date);
+      setPickerMode("time");
+      setShowDatePicker(true);
+      return;
+    }
+
+    const finalDate = date;
+    setSelectedDate(finalDate);
+    setShowDatePicker(false);
+    if (Platform.OS === "android") {
+      setPickerMode("date");
+    }
+    onCompleteByChange(finalDate.toLocaleString());
+  };
+
   return (
     <ThemedView style={styles.form}>
       <TextInput
@@ -58,8 +99,21 @@ export function TodoForm({
         placeholder={TODO_SCREEN_TEXT.todoCompleteByPlaceholder}
         placeholderTextColor={textColor}
         value={completeBy}
-        onChangeText={onCompleteByChange}
+        onPressIn={() => {
+          if (Platform.OS === "android") {
+            setPickerMode("date");
+          }
+          setShowDatePicker(true);
+        }}
       />
+      {showDatePicker && (
+        <DateTimePicker
+          value={selectedDate}
+          mode={pickerMode}
+          display={Platform.OS === "ios" ? "spinner" : "default"}
+          onChange={handleDateChange}
+        />
+      )}
 
       <ThemedText style={styles.label}>
         {TODO_SCREEN_TEXT.todoCategoryLabel}

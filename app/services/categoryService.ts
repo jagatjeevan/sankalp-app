@@ -1,4 +1,4 @@
-import { TodoCategory } from "@types/todo";
+import { TodoCategory } from "@models/todo";
 import {
   addDoc,
   collection,
