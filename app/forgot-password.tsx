@@ -68,9 +68,7 @@ export default function ForgotPasswordPage() {
               <ThemedText style={styles.message}>{message}</ThemedText>
             ) : null}
             {error ? (
-              <ThemedText type="defaultBold" style={styles.error}>
-                {error}
-              </ThemedText>
+              <ThemedText style={styles.error}>{error}</ThemedText>
             ) : null}
 
             <Pressable

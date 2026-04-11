@@ -1,14 +1,15 @@
 import { getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyArRG9DnCuqNl6ZrZswJZSFKQGsORNtj7U",
-  authDomain: "sankalp-71901.firebaseapp.com",
-  projectId: "sankalp-71901",
-  storageBucket: "sankalp-71901.firebasestorage.app",
-  messagingSenderId: "449322127599",
-  appId: "1:449322127599:web:947fa6131078f8da178b1a",
-  measurementId: "G-N9M75FGKHB",
+  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 if (getApps().length === 0) {
@@ -16,3 +17,4 @@ if (getApps().length === 0) {
 }
 
 export const auth = getAuth();
+export const db = getFirestore();

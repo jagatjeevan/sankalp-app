@@ -5,8 +5,8 @@ import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { HapticTab } from "../../components/haptic-tab";
 import { IconSymbol } from "../../components/ui/icon-symbol";
 import { Colors } from "../../constants/theme";
-import { useAuth } from "../contexts/auth-context";
 import { useColorScheme } from "../../hooks/use-color-scheme";
+import { useAuth } from "../contexts/auth-context";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -45,11 +45,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="tabs"
         options={{
-          title: "Explore",
+          title: "Todos",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <IconSymbol size={28} name="checklist" color={color} />
           ),
         }}
       />

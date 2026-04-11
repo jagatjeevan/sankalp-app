@@ -31,22 +31,26 @@ function RootLayoutContent() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack
         screenOptions={{
-          animationEnabled: true,
+          animation: "fade",
         }}
       >
         {user ? (
           <>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="todos" options={{ headerShown: true }} />
             <Stack.Screen
               name="modal"
-              options={{ presentation: "modal", title: "Modal" }}
+              options={{
+                presentation: "modal",
+                title: "Modal",
+                animation: "fade",
+              }}
             />
           </>
         ) : (
           <>
             <Stack.Screen
               name="login"
-              options={{ headerShown: false, animationEnabled: false }}
+              options={{ headerShown: false, animation: "fade" }}
             />
             <Stack.Screen
               name="signup"
